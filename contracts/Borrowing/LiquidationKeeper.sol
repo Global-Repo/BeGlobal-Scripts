@@ -12,6 +12,8 @@ interface IController {
     function maxLiquidatableAmount(address borrower) external view returns (uint256);
 
     function getPrice(address gToken) external view returns (uint256);
+
+    function totalDebts(address user) external view returns (uint256 total);
 }
 
 interface IGToken {
@@ -90,9 +92,9 @@ contract LiquidationKeeper is Ownable {
         IERC20(_tokenAddress).safeTransfer(address(msg.sender), _tokenAmount);
     }
 
-    /////////////////////////////////
-    ////  Borrowers Management  /////
-    /////////////////////////////////
+    function getBorrowerTotalDebts(address _borrower) public view onlyLiquidatorManager returns (uint256) {
+        return controller.totalDebts(_borrower);
+    }
 
     function changeLiquidatorManager(address _newManager) public onlyOwner {
         liquidatorManager = _newManager;

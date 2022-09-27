@@ -1,7 +1,7 @@
 // const { web3 } = require("hardhat");
 const Web3 = require("web3");
-const abi = require("./abi");
-const abi2 = require("./abi2");
+const abi = require("./abis/abi");
+const abi2 = require("./abis/abi2");
 
 const Web3_bsc = new Web3("https://bsc-dataseed1.binance.org:443");
 
